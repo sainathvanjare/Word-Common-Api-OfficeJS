@@ -56,6 +56,14 @@ export class AppComponent implements OnInit {
     })
 
   }
+    async printSelection() {
+    await Word.run(async (context) => {
+      const range = context.document.getSelection();
+      range.font.color = "red";
+      range.load("text");
+      await context.sync();
+    });
+  }
   async changeTextColor(context, range, color) {
     range.font.color = color;
     await context.sync()
