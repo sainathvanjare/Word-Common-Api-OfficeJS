@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   ]
 
   ngOnInit() {
-    debugger;
     this.autoShowTaskpane();
     this.initData();
 
@@ -56,7 +55,7 @@ export class AppComponent implements OnInit {
     })
 
   }
-    async printSelection() {
+  async printSelection() {
     await Word.run(async (context) => {
       const range = context.document.getSelection();
       range.font.color = "red";
@@ -64,6 +63,39 @@ export class AppComponent implements OnInit {
       await context.sync();
     });
   }
+
+  
+async insertTable1() {
+  await Word.run(async (context) => {
+    // Use a two-dimensional array to hold the initial table values.
+    let data = [
+      ["Tokyo", "Beijing", "Seattle"],
+      ["Apple", "Orange", "Pineapple"]
+    ];
+    let table = context.document.body.insertTable(2, 3, "Start", data);
+    table.styleBuiltIn = Word.Style.gridTable5Dark_Accent2;
+    table.styleFirstColumn = false;
+
+    await context.sync();
+  });
+}
+
+async  insertComment() {
+  await Word.run(async (context: any) => {
+    let text = $("#This is test comment")
+      .val()
+      .toString();
+    let comment = context.document.getSelection().insertComment(text);
+
+    // Load object for display in Script Lab console.
+    comment.load();
+    await context.sync();
+
+    console.log("Comment inserted:");
+    console.log(comment);
+  });
+}
+
   async changeTextColor(context, range, color) {
     range.font.color = color;
     await context.sync()
@@ -102,7 +134,7 @@ export class AppComponent implements OnInit {
     Office.context.document.settings.saveAsync();
   }
 
-  getCurrentDocumentName() {
+  getCurrentDocumentName() { 
     let docUrl = Office.context.document.url;
     let docName = "";
     if (docUrl) {
