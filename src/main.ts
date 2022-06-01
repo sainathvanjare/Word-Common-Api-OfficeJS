@@ -9,10 +9,10 @@ if (environment.production) {
 }
 // declare const Office: any;
 
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
 
-Office.initialize = function () {
-  const platform = platformBrowserDynamic();
-  platform.bootstrapModule(AppModule);
-};
+// Office.initialize = function () {
+//   const platform = platformBrowserDynamic();
+//   platform.bootstrapModule(AppModule);
+// };
