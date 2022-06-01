@@ -10,13 +10,13 @@
       <option value="bulletText" (click)="applyBulletStyle()">Bullet Text</option>
       <option value="bodyText">Body Text</option>
     </select> -->
-    <select [(ngModel)]="selectedStyle">
+<!--     <select [(ngModel)]="selectedStyle">
       <option value="">Spartan Styles</option>
       <option *ngFor="let tstyle of textStyles" [ngValue]="tstyle" (click)="applyStyle()">
         {{ tstyle.name }}
       </option>
-    </select>
-    <select id="mySelect">
+    </select> -->
+<!--     <select id="mySelect">
       <option value='1'>1</option>
       <option value='2'>2</option>
       <option value='3'>3</option>
@@ -25,22 +25,25 @@
       <option value='6'>6</option>
       <option value='7'>7</option>
       <option value='8'>8</option>
-    </select>
+    </select> -->
   </div>
   <!-- Highlight Card -->
 
   <div class="card-container">
-    <button class="btn btn-primary" (click)="initData()">
+<!--     <button class="btn btn-primary" (click)="initData()">
       Get Bookmarks
+    </button> -->
+    <button id="run" class="ms-Button">
+    <span class="ms-Button-label">Print selection</span>
     </button>
 
-    <!-- <button class="btn btn-primary" (click)="addHeader()">
+    <button class="btn btn-primary" (click)="addHeader()">
       insert Header
     </button>
 
     <button class="btn btn-primary" (click)="addFooter()">
       insert Footer
-    </button> -->
+    </button>
 
     <!-- button class="btn btn-primary" (click)="officeExe()">
       insert Bookmarks
