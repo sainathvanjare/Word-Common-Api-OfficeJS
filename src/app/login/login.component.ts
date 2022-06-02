@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     invalidCredentials= false
+    isLoginPage= true;
+    homePage= false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -56,7 +58,10 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                  this.router.navigate(['/home'])
+                  this.homePage = true;
+                  this.isLoginPage = false;
+                  // this.router.navigate(['/home']);
+
                 },
                 error => {
                   if(error.error){
