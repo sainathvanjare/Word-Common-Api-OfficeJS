@@ -58,11 +58,26 @@
         </button>
         </p>
   
-        <!-- <p>
-          <button class="btn btn-primary" (click)="insertComment()">
-            insert comment
+        <div>
+          <p>
+            <button class="btn btn-primary" (click)="deleteSelectedText()">
+              Delete Selection
+            </button>
+            </p>
+      
+            <div>
+        Get the List of Clauses
+        
+          <button class="btn btn-primary" (click)="getClauses()">
+            Get Clauses
           </button>
-          </p> -->
+          </div>
+          <div *ngFor="let clause of clauses">
+            <strong> Clause Name:  </strong> {{clause.name}}
+            <button  (click)="getClauseDescription(clause.description)">
+              Get Details
+            </button>
+            </div>
       <!-- button class="btn btn-primary" (click)="officeExe()">
         insert Bookmarks
       </button> -->

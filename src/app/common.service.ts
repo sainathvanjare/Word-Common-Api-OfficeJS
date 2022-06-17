@@ -11,6 +11,7 @@ export class CommonService {
   private currentUserSubject
   public currentUser
   baseUrl = "https://officejs-server.herokuapp.com/api"
+  // baseUrl = "http://localhost:3000/api"
 
   constructor(private http: HttpClient) {
       this.currentUserSubject = (JSON.parse(localStorage.getItem('currentUser')));
@@ -43,5 +44,15 @@ export class CommonService {
       // remove user from local storage and set current user to null
       localStorage.removeItem('currentUser');
       this.currentUserSubject.next(null);
+  }
+
+  
+  getClauses() {
+      return this.http.get<any>(`${this.baseUrl}/getClauses`)
+          .pipe(map(clauses => {
+              return clauses;
+          }, (error)=>{
+            console.log(error)
+          }));
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from "../app.service";
 import * as $ from 'jquery';
 import { range } from 'rxjs';
-
+import { CommonService } from '../common.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,10 +11,11 @@ import { range } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private commonService: CommonService) {
   }
   title = 'word-addin';
   selectedStyle: any;
+  clauses: any;
   textStyles = [
     { name: "Spartan Styles", value: "" },
     { name: "Heading1", value: "Heading1" },
@@ -263,6 +264,34 @@ async  insertComment() {
       })
       await context.sync();
     })
+  }
+
+  getClauses(){
+    this.commonService.getClauses()
+            .pipe()
+            .subscribe(
+                data => {
+                 this.clauses = data;
+                },
+                error => {
+                 console.log(error)
+                });
+  }
+
+  async getClauseDescription(description){
+    await Word.run(async (context) => {
+      const range = context.document.getSelection();
+      range.insertText(description, Word.InsertLocation.end);
+      await context.sync();
+    });
+  }
+
+  async deleteSelectedText(){
+    await Word.run(async (context) => {
+      const range = context.document.getSelection();
+      range.delete();
+      await context.sync();
+    });
   }
 }
 
